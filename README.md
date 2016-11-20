@@ -1,27 +1,15 @@
-#Projeto final de Des. Sis. 4° B (2016)
+#Sistema de Provas Online
 
-O trabalho final será o desenvolvimento de um sistema com requisitos específicos. Será separado em grupos, cada um com um projeto de sistema. Cada equipe será composta por no máximo quatro pessoas.
+##Problemática
 
-Basicamente as habilidades necessárias para executar este projeto incluem criação de **banco de dados**, domínio de uma linguagem de programação para geração de **CRUD** e resolução de **problemas específicos** tratados na descrição do problema de cada aplicação.
+Criar um sistema que gerencia provas online e ranqueia os pontos que os alunos tiram nas atividades. Nesse sistema os administradores incluem perguntas em determinadas categorias. Então os alunos e solicitam a geração de uma prova para que respondam. O sistema corrige as questões na hora e mostra a pontuação obtida pelo aluno.
 
-Este repositório foi criado para que as equipes possam trabalhar adequadamente versionando seu código e permitindo o monitoramento pelo professor a todo momento. **Todos os integrantes devem possuir uma conta GitHub** e serão adicionados como colaboradores do repositório. Neste repositório, **cada sistema será um branch**, por isso as equipes devem fazer checkout do branch apropriado para trabalhar.
+Cada resposta certa dá ao aluno (10 x **fator**) pontos . Se a pergunta ja foi respondida pelo aluno anteriormente então os pontos não serão creditados novamente.
 
-##O que será avaliado?
+Os administradores controlam o sistema cadastrando temas e perguntas. Quanto aos temas, será cadastrado o nome e o fator multiplicador para os pontos. Esse fator é como se fosse o nível de dificuldade: 0.8 para fácil, 1 para médio e 1.2 para difícil. O fator é utilizado no cálculo de pontos.
 
-- Todos os membros da equipe devem commitar
-- Os requisitos do sistema devem estar de acordo com o foi codificado
-- Domínio das ferramentas e frameworks utilizadas
+O cadastro da pergunta inclui o enunciado, o tema e 5 respostas possíveis. Também deve ser informado qual das respostas é a correta para correção automática. 
 
-##Tópicos necessários no README.md
+Quando um aluno entra no sistema usando seu login e senha, ele pode gerar provas com tema específico ou geral, informando o número de questões que deseja responder (o mínimo será 5 questões). Sua pontuação ficará registrada. Também terá acesso ao ranking de alunos mostrando o top 10 dos alunos com mais pontuação.
 
-O arquivo README.md do branch deve ser modificado para explicar o processo de desenvolvimento, além das ferramentas e frameworks utilizados. 
-
-**O projeto não será avaliado sem o README.md modificado!**
-
-- Nome do sistema
-- Equipe de desenvolvimento
-- Linguagem de programação (todos as linguagens utilizadas)
-- Ferramentas (IDE, compiladores, debuggers, editores, testadores, navegadores, etc)
-- Frameworks e Dependências
-- Descrição do processo de desenvolvimento (explicar detalhes de planejamento, execução e testes do sistema)
-- Descrição do processo de compilação/implantação/execução do sistema a partir do código-fonte no repositório
+Sempre que o fator de multiplicação de um tema for alterado, a pontuação já obtida de todos os participantes também deve ser recalculada e informar a todos por e-mail.
