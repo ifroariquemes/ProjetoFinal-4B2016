@@ -1,27 +1,13 @@
-#Projeto final de Des. Sis. 4° B (2016)
+#Sistema de Fórum de Discussão
 
-O trabalho final será o desenvolvimento de um sistema com requisitos específicos. Será separado em grupos, cada um com um projeto de sistema. Cada equipe será composta por no máximo quatro pessoas.
+##Problemática
 
-Basicamente as habilidades necessárias para executar este projeto incluem criação de **banco de dados**, domínio de uma linguagem de programação para geração de **CRUD** e resolução de **problemas específicos** tratados na descrição do problema de cada aplicação.
+Criar um sistema para controlar fóruns de discussão. Os fóruns são fechados para acesso apenas por usuários cadastrados, porém qualquer pessoa pode se cadastrar no sistema usando seu nome real, nome de exibição, e-mail e senha.
 
-Este repositório foi criado para que as equipes possam trabalhar adequadamente versionando seu código e permitindo o monitoramento pelo professor a todo momento. **Todos os integrantes devem possuir uma conta GitHub** e serão adicionados como colaboradores do repositório. Neste repositório, **cada sistema será um branch**, por isso as equipes devem fazer checkout do branch apropriado para trabalhar.
+Existem três tipos de usuários no sistema: (a) administrator, que pode gerenciar fóruns de discussão e fazer tudo que um moderador pode fazer; (b) moderador, que pode gerenciar threads de todos os usuários e fazer tudo que um usuário comum pode fazer; e (c) usuário comum, que pode apenas criar threads dentro de fóruns existentes, como também altera-los ou exclui-los. 
 
-##O que será avaliado?
+Um fórum é um ambiente que contextualiza uma discussão (ex.: carros, filmes). E esse fórum pode contém sub-fóruns que vão especializando o contexto (ex.: ford, terror). Portanto um fórum terá nome e identificação do fórum pai (se for derivado de algum).
 
-- Todos os membros da equipe devem commitar
-- Os requisitos do sistema devem estar de acordo com o foi codificado
-- Domínio das ferramentas e frameworks utilizadas
+Uma thread é uma nova discussão que será postada dentro de um fórum, iniciada por um usuário do sistema. Essa thread pode ser respondida por outros usuários e as respostas podem gerar réplicas, que também podem gerar réplicas, e assim sucessivamente. Todas as réplicas devem ficar aninhadas em suas respostas de origem. Outras informações sobre a thread que devem ficar disponíveis para o usuário são quantidade de respostas e data da última resposta. A ordenação das threads será pela data da última resposta ou data de postagem (caso não tenha alguma resposta ainda).
 
-##Tópicos necessários no README.md
-
-O arquivo README.md do branch deve ser modificado para explicar o processo de desenvolvimento, além das ferramentas e frameworks utilizados. 
-
-**O projeto não será avaliado sem o README.md modificado!**
-
-- Nome do sistema
-- Equipe de desenvolvimento
-- Linguagem de programação (todos as linguagens utilizadas)
-- Ferramentas (IDE, compiladores, debuggers, editores, testadores, navegadores, etc)
-- Frameworks e Dependências
-- Descrição do processo de desenvolvimento (explicar detalhes de planejamento, execução e testes do sistema)
-- Descrição do processo de compilação/implantação/execução do sistema a partir do código-fonte no repositório
+Um moderador poderá encerrar uma thread impedindo que os usuários continuem respondendo e até mesmo deletar respostas específicas, porém essas respostas constaram no sistema, mudando o texto para "[resposta deletada pela moderação]" quando isso acontecer.
