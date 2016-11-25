@@ -29,5 +29,8 @@ class PostController extends Controller {
         \Session::flash('message', 'Post cadastrado com sucesso!');
         return Redirect::to('/');
     }
+    public function edit() {
+ 	   return view('post.edit');
+	}
 
 }

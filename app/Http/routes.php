@@ -22,6 +22,8 @@ Route::group(['middlewareGroups' => ['web']], function () {
 	Route::get('/home', 'HomeController@index');
 
 	Route::get('/post/create', 'PostController@create');
+        
+        Route::get('/post/edit', 'PostController@edit');
 
 	Route::post('/post/store', 'PostController@store');
 
