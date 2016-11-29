@@ -14,8 +14,8 @@ if ($prova->rowCount() == 0) {
 $prova = $prova->fetchObject();
 $retorno = array();
 $retorno['status'] = 'ok';
-$retorno['titulo'] = $row->titulo;
-$retorno['tempo'] = $row->tempo;
+$retorno['titulo'] = $prova->titulo;
+$retorno['tempo'] = $prova->tempo;
 $retorno['questoes'] = array();
 $questoes = $pdo->prepare("SELECT * FROM 'questoes' WHERE 'id_prova' = ?");
 $questoes->execute([$id]);
