@@ -26,5 +26,18 @@ Route::group(['middlewareGroups' => ['web']], function () {
         Route::get('/post/edit', 'PostController@edit');
 
 	Route::post('/post/store', 'PostController@store');
+        
+        Route::get('/categoria/create', 'CategoriaController@create');
+        
+        Route::get('/categoria/edit', 'CategoriaController@edit');
+
+	Route::post('/categoria/store', 'CategoriaController@store');
+        
+        Route::get('/categoria/index', 'CategoriaController@index');
+        
+        Route::patch('/post/{id}/update', 'PostController@update');
+        
+        Route::patch('/post/{id}/disable', 'PostController@disable');
+        
 
 });
