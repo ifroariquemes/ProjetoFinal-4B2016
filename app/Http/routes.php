@@ -39,7 +39,7 @@ Route::group(['middlewareGroups' => ['web']], function () {
         
         Route::patch('/post/{id}/disable', 'PostController@disable');
         
-        Route::delete('/post/{id}/destroy', 'PostController@destroy');
+        Route::delete('/categoria/{id}/destroy', 'CategoriaController@destroy');
         
 
 });
