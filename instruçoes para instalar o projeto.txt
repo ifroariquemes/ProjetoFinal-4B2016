@@ -1,7 +1,7 @@
 ﻿Passo 1: clonar o repositorio
 	git@github.com:ifroariquemes/ProjetoFinal-4B2016.git
 
-Passo 2: dar chekout para blog
+Passo 2: dar checkout para blog
 	git checkout blog
 
 Passo 3: instalar a pasta vendor
