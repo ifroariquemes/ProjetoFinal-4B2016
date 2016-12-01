@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Categoria;
 
+use App\Post;
+
 use Redirect;
 
 class CategoriaController extends Controller {

@@ -47,7 +47,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="<?php echo e(url('/')); ?>">
+                <a class="navbar-brand" href="<?php echo e(url('/home')); ?>">
                     BloGamers
                 </a>
             </div>
@@ -56,7 +56,10 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="<?php echo e(url('/home')); ?>">Home</a></li>
-                    <li><a href="<?php echo e(url('/categoria')); ?>">Categoria</a></li>
+                    <?php if(Auth::guest()): ?>
+                    <?php else: ?>
+                        <li><a href="<?php echo e(url('/categoria')); ?>">Categoria</a></li>
+                    <?php endif; ?>
                 </ul>
                 
 

@@ -13,62 +13,65 @@
       <div class="row">
 
         <div class="col-sm-8 blog-main">
-
-          <div class="blog-post">
-            <h2 class="blog-post-title">Post simples</h2>
-            <p class="blog-post-meta">January 1, 2014 by <b>Mark</b></p>
-            <hr>
-            <p>This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
-            <hr>
-            <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-            <blockquote>
-              <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            </blockquote>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-            <h2>Heading</h2>
-            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <h3>Sub-heading</h3>
-            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-            <pre><code>Example code block</code></pre>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-            <h3>Sub-heading</h3>
-            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <ul>
-              <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-              <li>Donec id elit non mi porta gravida at eget metus.</li>
-              <li>Nulla vitae elit libero, a pharetra augue.</li>
-            </ul>
-            <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-            <ol>
-              <li>Vestibulum id ligula porta felis euismod semper.</li>
-              <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-              <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
-            </ol>
-            <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
-            <a class="btn btn-primary" href="#">Leia mais <span class="glyphicon glyphicon-chevron-right"></span></a>
-            @if (Auth::guest())
-            @else
-              <a class="btn btn-success" href="#">Editar <span class="glyphicon glyphicon-edit"></span></a>
-              <a class="btn btn-danger" href="#">Desativar <span class="glyphicon glyphicon-remove"></span></a>
-            @endif
-          </div><!-- /.blog-post -->
+        @if( isset($posts[0]) )
+          @foreach($posts as $post)
+            <div class="blog-post">
+              <h2 class="blog-post-title">{{ $post->titulo }}</h2>
+              <p class="blog-post-meta">Postado por <b>{{ $post->autor->name }}</b>, às {{ date_format($post->created_at, 'H:i - 
+              d-m-Y') }}</p>
+              <p class="blog-post-meta">Revisto por <b>{{ $post->revisor->name }}</b>, às {{ date_format($post->updated_at, 'H:i - d-m-Y') }}</p>
+              <hr>
+              {{ $post->resumo }}
+              <p></p>
+              @if (Auth::guest())
+                <a class="btn btn-primary" href="home/{{$post->id}}/read">Leia mais <span class="glyphicon glyphicon-chevron-right"></span></a>
+              @else
+                <a class="btn btn-primary" href="home/{{$post->id}}/read">Leia mais <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-success" href="post/{{$post->id}}/edit">Editar <span class="glyphicon glyphicon-edit"></span></a>
+                <a class="btn btn-danger" href="post/{{$post->id}}/disable">Desativar <span class="glyphicon glyphicon-remove"></span></a>
+              @endif
+            </div><!-- /.blog-post -->
+          @endforeach
           <hr>
-          
-          <nav>
-            <ul class="pager">
-              <li><a href="#">Previous</a></li>
-              <li><a href="#">Next</a></li>
-            </ul>
-          </nav>
+          {!! $posts->render() !!}
+        @else
+          <div class="alert alert-info" role="alert">Nenhum post foi cadastrado.</div>
+        @endif 
 
         </div><!-- /.blog-main -->
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           @if (Auth::guest())
+            <div class="sidebar-module">
+              <h4>Categorias</h4>
+              <ol class="list-unstyled">
+              @if (isset($categorias[0]))
+                @foreach($categorias as $categoria)
+                  <li><a href="{{ url('/home/'.$categoria->id) }}">{{$categoria->categoria}}</a></li>
+                @endforeach
+              @else
+                <li>Sem categorias</li>
+              @endif
+              </ol>
+            </div>
           @else
             <div class="sidebar-module sidebar-module-inset">
               <h4>Gerenciar post's</h4>
               <a class="btn btn-primary" href="{{ url('/post/create') }}">Novo post <span class="glyphicon glyphicon-pencil"></span></a>
+              <br><br>
+              <a class="btn btn-warning" href="{{ url('/post/desactives') }}">Post's desativados <span class="glyphicon glyphicon-th-list"></span></a>
+            </div>
+            <div class="sidebar-module">
+              <h4>Categorias</h4>
+              <ol class="list-unstyled">
+              @if (isset($categorias[0]))
+                @foreach($categorias as $categoria)
+                  <li><a href="{{ url('/home/'.$categoria->id) }}">{{$categoria->categoria}}</a></li>
+                @endforeach
+              @else
+                <li>Sem categorias</li>
+              @endif
+              </ol>
             </div>
           @endif
         </div><!-- /.blog-sidebar -->

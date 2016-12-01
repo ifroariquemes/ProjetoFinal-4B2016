@@ -1,0 +1,26 @@
+﻿Passo 1: clonar o repositorio
+	git@github.com:ifroariquemes/ProjetoFinal-4B2016.git
+
+Passo 2: dar chekout para blog
+	git checkout blog
+
+Passo 3: instalar a pasta vendor
+	composer install
+
+Passo 4: renomear o arquivo .env.example para .env
+
+Passo 5: configurar o banco no arquivo .env recém renomeado
+
+Passo 6: gerar nova chave do app
+	php artisan key:generate
+
+Passo 7: migrar as tabelas 
+	php artisan migrate
+Passo 8: entrar no link do projeto
+	http://localhost/ProjetoFinal-4B2016/public/home
+Passo 9: se cadastrar no sistema
+
+Passo 10: semear o banco com dados 
+	php artisan db:seed
+
+Por enfim é só se divertir :3

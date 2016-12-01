@@ -15,21 +15,25 @@ Route::group(['middlewareGroups' => ['web']], function () {
 	
 	Route::auth();
 
-	Route::get('/', function () {
-    	return view('home');
-	});
-
 	Route::get('/home', 'HomeController@index');
+
+    Route::get('/home/{categoria?}', 'HomeController@index');
+
+    Route::get('/home/{id}/read', 'HomeController@read');
 
 	Route::get('/post/create', 'PostController@create');
         
     Route::get('/post/{id}/edit', 'PostController@edit');
 
+    Route::get('/post/desactives', 'PostController@desactives');
+
+    Route::get('/post/{id}/active', 'PostController@active');
+
 	Route::post('/post/store', 'PostController@store');
         
     Route::patch('/post/{id}/update', 'PostController@update');
         
-    Route::patch('/post/{id}/disable', 'PostController@disable');
+    Route::get('/post/{id}/disable', 'PostController@disable');
         
     Route::delete('/categoria/{id}/destroy', 'CategoriaController@destroy');
         
@@ -43,6 +47,6 @@ Route::group(['middlewareGroups' => ['web']], function () {
         
     Route::get('/categoria/index', 'CategoriaController@index');
 
-    Route::get('/categoria', 'CategoriaController@index');
+    Route::get('categoria', 'CategoriaController@index');
     
 });

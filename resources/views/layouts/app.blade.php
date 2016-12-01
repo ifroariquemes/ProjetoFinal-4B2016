@@ -47,7 +47,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     BloGamers
                 </a>
             </div>
@@ -56,7 +56,10 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
-                    <li><a href="{{ url('/categoria') }}">Categoria</a></li>
+                    @if (Auth::guest())
+                    @else
+                        <li><a href="{{ url('/categoria') }}">Categoria</a></li>
+                    @endif
                 </ul>
                 
 

@@ -9,4 +9,8 @@ class Categoria extends Model {
     protected $table = 'categorias';
 
     protected $fillable = ['categoria'];
+
+    public function post() {
+ 	   return $this->belongsTo('App\Post');
+	}
 }

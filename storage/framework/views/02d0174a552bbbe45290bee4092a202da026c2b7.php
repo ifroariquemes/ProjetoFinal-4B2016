@@ -11,62 +11,67 @@
       <div class="row">
 
         <div class="col-sm-8 blog-main">
+        <?php if( isset($posts[0]) ): ?>
+          <?php foreach($posts as $post): ?>
+            <div class="blog-post">
+              <h2 class="blog-post-title"><?php echo e($post->titulo); ?></h2>
+              <p class="blog-post-meta">Postado por <b><?php echo e($post->autor->name); ?></b>, às <?php echo e(date_format($post->created_at, 'H:i - 
+              d-m-Y')); ?></p>
+              <p class="blog-post-meta">Revisto por <b><?php echo e($post->revisor->name); ?></b>, às <?php echo e(date_format($post->updated_at, 'H:i - d-m-Y')); ?></p>
+              <hr>
+              <?php echo e($post->resumo); ?>
 
-          <div class="blog-post">
-            <h2 class="blog-post-title">Post simples</h2>
-            <p class="blog-post-meta">January 1, 2014 by <b>Mark</b></p>
-            <hr>
-            <p>This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
-            <hr>
-            <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-            <blockquote>
-              <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            </blockquote>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-            <h2>Heading</h2>
-            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <h3>Sub-heading</h3>
-            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-            <pre><code>Example code block</code></pre>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-            <h3>Sub-heading</h3>
-            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <ul>
-              <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-              <li>Donec id elit non mi porta gravida at eget metus.</li>
-              <li>Nulla vitae elit libero, a pharetra augue.</li>
-            </ul>
-            <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-            <ol>
-              <li>Vestibulum id ligula porta felis euismod semper.</li>
-              <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-              <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
-            </ol>
-            <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
-            <a class="btn btn-primary" href="#">Leia mais <span class="glyphicon glyphicon-chevron-right"></span></a>
-            <?php if(Auth::guest()): ?>
-            <?php else: ?>
-              <a class="btn btn-success" href="#">Editar <span class="glyphicon glyphicon-edit"></span></a>
-              <a class="btn btn-danger" href="#">Desativar <span class="glyphicon glyphicon-remove"></span></a>
-            <?php endif; ?>
-          </div><!-- /.blog-post -->
+              <p></p>
+              <?php if(Auth::guest()): ?>
+                <a class="btn btn-primary" href="home/<?php echo e($post->id); ?>/read">Leia mais <span class="glyphicon glyphicon-chevron-right"></span></a>
+              <?php else: ?>
+                <a class="btn btn-primary" href="home/<?php echo e($post->id); ?>/read">Leia mais <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-success" href="post/<?php echo e($post->id); ?>/edit">Editar <span class="glyphicon glyphicon-edit"></span></a>
+                <a class="btn btn-danger" href="post/<?php echo e($post->id); ?>/disable">Desativar <span class="glyphicon glyphicon-remove"></span></a>
+              <?php endif; ?>
+            </div><!-- /.blog-post -->
+          <?php endforeach; ?>
           <hr>
-          
-          <nav>
-            <ul class="pager">
-              <li><a href="#">Previous</a></li>
-              <li><a href="#">Next</a></li>
-            </ul>
-          </nav>
+          <?php echo $posts->render(); ?>
+
+        <?php else: ?>
+          <div class="alert alert-info" role="alert">Nenhum post foi cadastrado.</div>
+        <?php endif; ?> 
 
         </div><!-- /.blog-main -->
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <?php if(Auth::guest()): ?>
+            <div class="sidebar-module">
+              <h4>Categorias</h4>
+              <ol class="list-unstyled">
+              <?php if(isset($categorias[0])): ?>
+                <?php foreach($categorias as $categoria): ?>
+                  <li><a href="<?php echo e(url('/home/'.$categoria->id)); ?>"><?php echo e($categoria->categoria); ?></a></li>
+                <?php endforeach; ?>
+              <?php else: ?>
+                <li>Sem categorias</li>
+              <?php endif; ?>
+              </ol>
+            </div>
           <?php else: ?>
             <div class="sidebar-module sidebar-module-inset">
               <h4>Gerenciar post's</h4>
               <a class="btn btn-primary" href="<?php echo e(url('/post/create')); ?>">Novo post <span class="glyphicon glyphicon-pencil"></span></a>
+              <br><br>
+              <a class="btn btn-warning" href="<?php echo e(url('/post/desactives')); ?>">Post's desativados <span class="glyphicon glyphicon-th-list"></span></a>
+            </div>
+            <div class="sidebar-module">
+              <h4>Categorias</h4>
+              <ol class="list-unstyled">
+              <?php if(isset($categorias[0])): ?>
+                <?php foreach($categorias as $categoria): ?>
+                  <li><a href="<?php echo e(url('/home/'.$categoria->id)); ?>"><?php echo e($categoria->categoria); ?></a></li>
+                <?php endforeach; ?>
+              <?php else: ?>
+                <li>Sem categorias</li>
+              <?php endif; ?>
+              </ol>
             </div>
           <?php endif; ?>
         </div><!-- /.blog-sidebar -->
