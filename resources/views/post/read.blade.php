@@ -12,7 +12,7 @@
               d-m-Y') }}</p>
               <p class="blog-post-meta">Revisto por <b>{{ $post->revisor->name }}</b>, às {{ date_format($post->updated_at, 'H:i - d-m-Y') }}</p>
               <hr>
-              {{ $post->texto_completo }}
+              {!! $post->texto_completo !!}
             </div><!-- /.blog-post -->
           
         </div><!-- /.blog-main -->
