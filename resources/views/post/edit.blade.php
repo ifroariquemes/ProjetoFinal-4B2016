@@ -11,6 +11,7 @@
             <h2 class="blog-post-title">Editar Post</h2>
             <hr>
             <form action="{{ URL::to('/post/storage') }}" method="post">
+              {{ csrf_field() }}
               <div class="form-group">
                 <div class="form-group">
                   <label for="titulo">Titulo da postagem</label>

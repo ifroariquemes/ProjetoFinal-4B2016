@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Post;
+use App\Categoria;
+use Redirect;
 
 class PostController extends Controller {
 
@@ -14,17 +16,20 @@ class PostController extends Controller {
     }
 
 	public function create() {
- 	   return view('post.create');
+        $categorias = Categoria::get();
+ 	    return view('post.create')->with('categorias', $categorias);
 	}
+
 	//'titulo', 'resumo', 'texto_completo', 'categoria',
 	public function store(Request $request) {
     	$post = new Post();
         $post = $post->create([
             'titulo' => $request['titulo'],
-            'resumo' => substr($request['texto_completo'], 0, 256) . '...',
+            'resumo' => strip_tags(substr($request['texto_completo'], 0, 256)) . '...',
             'texto_completo' => $request['texto_completo'],
-            'categoria' => $request['categoria'],
+            'ativo' => '1',
             'user_id' => $request->user()->id,
+            'categoria_id' => $request['categoria'],
         ]);
         \Session::flash('message', 'Post cadastrado com sucesso!');
         return Redirect::to('/');
@@ -32,5 +37,13 @@ class PostController extends Controller {
     public function edit() {
  	   return view('post.edit');
 	}
+
+    public function update() {
+
+    }
+
+    public function disable() {
+
+    }
 
 }

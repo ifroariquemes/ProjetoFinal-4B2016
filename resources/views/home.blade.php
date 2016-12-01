@@ -2,7 +2,9 @@
 
 @section('content')
 <div class="container">
-
+      @if(Session::has('message'))
+        <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
+      @endif
       <div class="blog-header">
         <h1 class="blog-title">BloGamers</h1>
         <p class="lead blog-description">O blog dos gamers, posts de league of legends, World of warcraft etc.</p>

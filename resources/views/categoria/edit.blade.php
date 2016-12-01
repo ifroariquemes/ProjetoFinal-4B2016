@@ -5,19 +5,20 @@
 
     <div class="row">
 
-        <div class="col-sm-8 blog-main">
+        <div class="col-sm-12">
 
             <div class="blog-post">
                 <h2 class="blog-post-title">Editar categoria</h2>
                 <hr>
-                <form action="{{ URL::to('/categoria/update') }}" method="post">
+                {!! Form::model($categoria, ['method' => 'PATCH', 'url' => 'categoria/'.$categoria->id.'/update']) !!}
                     <div class="form-group">
                         <div class="form-group">
                             <label for="titulo">Categoria</label>
-                            <input type="text" class="form-control" name="categoria" id="titulo">
+                            <input type="text" class="form-control" name="categoria" id="titulo" value='{{ $categoria->categoria }}'>
                         </div>
-                        <button type="submit" class="btn btn-success">Salvar <i class="glyphicon glyphicon-ok"></i></button>
-                </form>
+                    </div>
+                    {!! Form::submit('Atualizar', ['class'=>'btn btn-primary pull-right']) !!}
+                {!! Form::close() !!}
             </div>
         </div><!-- /.blog-post -->
         <hr>

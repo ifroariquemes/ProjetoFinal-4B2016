@@ -23,23 +23,26 @@ Route::group(['middlewareGroups' => ['web']], function () {
 
 	Route::get('/post/create', 'PostController@create');
         
-        Route::get('/post/edit', 'PostController@edit');
+    Route::get('/post/{id}/edit', 'PostController@edit');
 
 	Route::post('/post/store', 'PostController@store');
         
-        Route::get('/categoria/create', 'CategoriaController@create');
+    Route::patch('/post/{id}/update', 'PostController@update');
         
-        Route::get('/categoria/edit', 'CategoriaController@edit');
+    Route::patch('/post/{id}/disable', 'PostController@disable');
+        
+    Route::delete('/categoria/{id}/destroy', 'CategoriaController@destroy');
+        
+    Route::get('/categoria/create', 'CategoriaController@create');
+        
+    Route::get('/categoria/{id}/edit', 'CategoriaController@edit');
+
+    Route::patch('/categoria/{id}/update', 'CategoriaController@update');
 
 	Route::post('/categoria/store', 'CategoriaController@store');
         
-        Route::get('/categoria/index', 'CategoriaController@index');
-        
-        Route::patch('/post/{id}/update', 'PostController@update');
-        
-        Route::patch('/post/{id}/disable', 'PostController@disable');
-        
-        Route::delete('/categoria/{id}/destroy', 'CategoriaController@destroy');
-        
+    Route::get('/categoria/index', 'CategoriaController@index');
 
+    Route::get('/categoria', 'CategoriaController@index');
+    
 });

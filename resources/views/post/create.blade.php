@@ -5,27 +5,33 @@
 
       <div class="row">
 
-        <div class="col-sm-8 blog-main">
+        <div class="col-sm-12 blog-main">
 
           <div class="blog-post">
             <h2 class="blog-post-title">Novo post</h2>
             <hr>
-            <form action="{{ URL::to('/post/storage') }}" method="post">
+            {!! Form::open(['method' => 'POST', 'url' => 'post/store']) !!}
+              {{ csrf_field() }}
               <div class="form-group">
                 <div class="form-group">
                   <label for="titulo">Titulo da postagem</label>
                   <input type="text" class="form-control" name="titulo" id="titulo">
                 </div>
                 <div class="form-group">
-                  <label for="categoria">Categoria da postagem</label>
-                  <input type="text" class="form-control" name="categoria" id="categoria">
+                  <label for="categoria"> Selecione a Categoria</label>
+                  <select class="form-control" id="categoria" name="categoria">
+                        <option value=""></option>
+                        @foreach($categorias as $categoria)
+                          <option value="{{$categoria->id}}">{{$categoria->categoria}}</option>
+                        @endforeach
+                   </select>
                 </div>             
                 <div class="form-group">
                   <label>Conteudo da postagem</label>
                   <textarea style="resize: none;" class="form-control" name="texto_completo" id="texto" rows="10"></textarea>
                 </div>
                 <button type="submit" class="btn btn-success">Salvar <i class="glyphicon glyphicon-ok"></i></button>
-            </form>
+            {!! Form::close() !!}
             </div>
           </div><!-- /.blog-post -->
           <hr>
