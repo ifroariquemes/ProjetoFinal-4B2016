@@ -22,12 +22,31 @@ body{
     font-size: 16px;
     border: 0;
     border-radius: 3px;
+    outline:none;
 }
 .button:hover{background: black; cursor: pointer;}
+
+.button.azul{background:#069;}
+.button.azul:hover{background:#036;}
+#next, #prev{display:none;}
 #wrap-geral{
     width:1000px;
-    margin:50px auto;
+    margin:90px auto;
     position:relative;
+}
+
+#wrap-geral .timer{
+    position:absolute;
+    top:-50px;
+    left:50%;
+    margin-left:-75%;
+    width:150px;
+    text-align:center;
+    color:white;
+    background:#333;
+    border-radius:4px;
+    line-height:40px;
+    font-size:19px;
 }
 
 #prova-lista{
@@ -44,9 +63,9 @@ body{
     width: 70%;
     height: 400px;
     min-height:400px;
-    
+    position:relative
 }
-#wrap-prova #next{float: right;}
+#wrap-prova #next, #concluir{float: right;}
 #wrap-prova .questao h1{
     font-size: 22px;
     color:#869;
@@ -55,13 +74,33 @@ body{
     width: 100%;
     float: left;
 }
-    
+#wrap-prova .begin{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:999;
+    background:rgba(255,255,255, 0.8);
+    display:none;
+}
+#wrap-prova .begin .button{
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-54px;
+    transform: translateY(-50%);
+}
 #wrap-prova .questao{
     width: 100%;
     padding: 20px; 
     background: white;
     margin-bottom: 10px;
     float: left;
+    display:none;
+}
+#wrap-prova .questao:first-child{
+    display:block;
 }
 #wrap-prova .questao h2{
     font-size: 18px;
