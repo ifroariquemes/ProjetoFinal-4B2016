@@ -6,4 +6,44 @@
 
 body {
     padding-top: 50px;
+    background: #D6D6D6;
+}
+
+.body {
+    width: 100%;
+    height: 100%;
+}
+
+.form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -150px 0 0 -150px;
+    padding: 10px 10px 0 10px;
+    width:300px;
+    height:160px;
+    border-radius: 5px;
+    background: #262626;
+    border-top: 3px solid #434a52;
+    border-bottom: 3px solid #434a52;
+}
+
+.input {
+    width: 100%; 
+    margin-bottom: 10px; 
+    background: rgba(0,0,0,0.3);
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 13px;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 4px;
+    box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+    -webkit-transition: box-shadow .5s ease;
+    -moz-transition: box-shadow .5s ease;
+    -o-transition: box-shadow .5s ease;
+    -ms-transition: box-shadow .5s ease;
+    transition: box-shadow .5s ease;
 }

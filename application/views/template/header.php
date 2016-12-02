@@ -57,7 +57,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <form class="navbar-form navbar-left">
+                        <form class="navbar-form navbar-left" action="" method="get">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="pesquisa" placeholder="Pesquisar">
                                 <div class="input-group-btn">
@@ -69,7 +69,12 @@
                         </form>
                     </li>
                     <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a href="<?= $this->session->userdata('logged') ? base_url('user/logout') : base_url('user/login') ?>">
+                            <?= $this->session->userdata('logged') ? "<span class='glyphicon glyphicon-log-out'>" : "<span class='glyphicon glyphicon-log-in'>" ?>
+                            </span> 
+                            <?= $this->session->userdata('logged') ? $this->session->userdata('nm_usuario') : 'Login' ?>
+                        </a>
+                    </li>
                 </ul>
 
             </div>
