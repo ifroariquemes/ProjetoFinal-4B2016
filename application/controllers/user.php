@@ -3,6 +3,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends CI_Controller {
+    
+    function __construct() {
+        parent::__construct();
+    }
+
+
+    public function view() {
+        var_dump($this->session->all_userdata());
+        exit;
+    }
 
     public function index() {
         $this->template->show('login');
@@ -24,12 +34,14 @@ class User extends CI_Controller {
 
             redirect('app');
         } else {
-            echo 'Não logado';
+            $this->session->set_flashdata('msg','Nome de usuário ou senha inválida');
+            redirect('user/login');
         }
     }
 
     public function logout() {
-        $this->session->unset_userdata('logged');
+        //$this->session->unset_userdata('logged');
+        $this->session->sess_destroy();
         redirect('app');
     }
 

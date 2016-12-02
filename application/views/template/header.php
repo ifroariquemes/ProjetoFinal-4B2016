@@ -8,12 +8,13 @@
                 echo '| ' . $page_title;
             }
             ?></title>
-        <script src="<?= base_url() ?>assets/js/jquery-3.1.1.min.js" type="text/javascript"></script>
-        <script src="<?= base_url() ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
-        <link href="<?= base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="<?= base_url() ?>assets/css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="<?= base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        <?php if ($this->session->flashdata('msg')) { ?>
+            <div class="alert alert-warning"><?= $this->session->flashdata('msg') ?></div>
+        <?php } ?>
         <nav class="navbar navbar-fixed-top navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -69,12 +70,23 @@
                         </form>
                     </li>
                     <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
-                    <li><a href="<?= $this->session->userdata('logged') ? base_url('user/logout') : base_url('user/login') ?>">
-                            <?= $this->session->userdata('logged') ? "<span class='glyphicon glyphicon-log-out'>" : "<span class='glyphicon glyphicon-log-in'>" ?>
-                            </span> 
-                            <?= $this->session->userdata('logged') ? $this->session->userdata('nm_usuario') : 'Login' ?>
-                        </a>
-                    </li>
+                        <?php
+                        if ($this->session->has_userdata('logged')) {
+                            echo "<li><a href='" . base_url('user/logout') . "'>"
+                            . "<span class='glyphicon glyphicon-log-out'> </span> {$this->session->userdata('nm_usuario') }</a>";
+                        } else {
+                            echo "<li><a href='" . base_url('user/login') . "'> "
+                            . "<span class='glyphicon glyphicon-log-in'> </span> Login </a>";
+                        }
+                        ?>
+                    <!--
+                     <li><a href="#">
+                            <span class='glyphicon glyphicon-log-in>
+                             </span> 
+                             Login
+                         </a>
+                     </li>
+                    -->
                 </ul>
 
             </div>
