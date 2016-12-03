@@ -3,17 +3,15 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>BR-Info <?php
-            if (isset($page_title)) {
-                echo '| ' . $page_title;
-            }
-            ?></title>
+        <title>BR-Info <?= isset($page_title) ? '| ' . $page_title : "" ?></title>
         <link href="<?= base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet" type="text/css"/>
         <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <?php if ($this->session->flashdata('msg')) { ?>
-            <div class="alert alert-warning"><?= $this->session->flashdata('msg') ?></div>
+            <div class="alert alert-dismissible <?= $this->session->flashdata('type') ?>">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <?= $this->session->flashdata('msg') ?></div>
         <?php } ?>
         <nav class="navbar navbar-fixed-top navbar-inverse">
             <div class="container-fluid">
@@ -70,23 +68,24 @@
                         </form>
                     </li>
                     <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
-                        <?php
-                        if ($this->session->has_userdata('logged')) {
-                            echo "<li><a href='" . base_url('user/logout') . "'>"
-                            . "<span class='glyphicon glyphicon-log-out'> </span> {$this->session->userdata('nm_usuario') }</a>";
-                        } else {
-                            echo "<li><a href='" . base_url('user/login') . "'> "
-                            . "<span class='glyphicon glyphicon-log-in'> </span> Login </a>";
-                        }
-                        ?>
-                    <!--
-                     <li><a href="#">
-                            <span class='glyphicon glyphicon-log-in>
-                             </span> 
-                             Login
-                         </a>
-                     </li>
-                    -->
+                    <?php if (!$this->session->has_userdata('logged')) { ?>
+                        <li>
+                            <a href="<?= base_url('user/login') ?>"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                        </li>
+                    <?php } else { ?>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?= $this->session->userdata('nm_usuario') ?>
+                                <span class="glyphicon glyphicon-cog"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<?= base_url('user')?>">Usuários</a></li>
+                                <li><a href="<?= base_url('user/edit')?>">Editar perfil</a></li>
+                                <li><a href="<?= base_url('user/cadastrar')?>">Cadastrar usuário</a></li>
+                                <li class="divider"></li>
+                                <li><a href="<?= base_url('user/logout') ?>">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
+                            </ul>
+                        </li>
+                    <?php } ?>
                 </ul>
 
             </div>

@@ -5,8 +5,16 @@
 */
 
 body {
-    padding-top: 50px;
-    background: #D6D6D6;
+    padding-top: 60px;
+    background: #eee;
+}
+
+.container-fixed-600 {
+    width: 600px;
+}
+
+.container-fixed-850 {
+    width: 850px;
 }
 
 .body {
