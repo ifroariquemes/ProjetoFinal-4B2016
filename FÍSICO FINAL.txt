@@ -21,7 +21,7 @@ CREATE TABLE categoria (
 );
 
 CREATE TABLE sub_categoria (
-	sub_id INTEGER PRIMARY KEY,
+	sub_id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	categoria_id INTEGER,
 	nm_sub VARCHAR(40),
 	FOREIGN KEY(categoria_id) REFERENCES categoria (categoria_id)

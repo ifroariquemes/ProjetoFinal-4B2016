@@ -1,0 +1,47 @@
+--INSERINDO NA TABELA USUARIO
+INSERT INTO usuario (nm_usuario, email, senha, telefone, sobrenome)
+VALUES
+('Lucas', 'lpjs@ifro.edu.br', '123456','98888-8888', 'Pereira'),
+('Éverton','esb@ifro.edu.br','123456','99999-9999','Bergantin'),
+('Daniedson','dms@ifro.edu.br','123456','93333-3333','Santos'),
+('Daniel','dsf@ifro.edu.br','123456','91111-1111','Souza');
+
+--INSERINDO NA TABELA CATEGORIA
+INSERT INTO categoria(nm_categoria)
+VALUES
+('Monitores'),
+('Memorias'),
+('Processadores'),
+('Placas de som'),
+('Placas de video'),
+('HD'),
+('Placas mãe');
+
+--INSERINDO NA TABELA SUB_CATEGORIA
+INSERT INTO sub_categoria(categoria_id, nm_sub)
+VALUES
+('1','LCD'),
+('1','LED'),
+('3','AMD'),
+('3','INTEL');
+
+--INSERINDO NA TABELA PRODUTO
+INSERT INTO produto(categoria_id, nm_produto, descricao, vl_produto)
+VALUES
+('3','Processador','Intel Core i7','1.899,90'),
+('2','Memporia RAM','Memória 2GB 1600MHz DDR3','129,90'),
+('6','HD','HD HITACHI 1TB','399'),
+('7','Placa mãe','Placa Mãe 1150 Gigabyte GA-H81M-S2PH com Serial, Paralela e HDMI','419');
+--INSERINDO NA TABELA ITENS
+INSERT INTO itens(lista_id, produto_id, quantidade)
+VALUES
+('1','2','3'),
+('3','1','1'),
+('2','4','4');
+
+--INSERINDO NA TABELA LISTA
+INSERT INTO lista (nm_usuario, email)
+VALUES
+('Lucas','lpjs@ifro.edu.br'),
+('Everton','esb@ifro.edu.br'),
+('Daniedson','dms@ifro.edu.br');
