@@ -20,14 +20,8 @@ CREATE TABLE produto (
 
 CREATE TABLE categoria (
 	categoria_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-	nm_categoria VARCHAR(40)
-);
-
-CREATE TABLE sub_categoria (
-	sub_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-	categoria_id INTEGER,
-	nm_sub VARCHAR(40),
-	FOREIGN KEY(categoria_id) REFERENCES categoria (categoria_id)
+        pai_id INTEGER,
+        nm_categoria VARCHAR(40)
 );
 
 CREATE TABLE lista (
