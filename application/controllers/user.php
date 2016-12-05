@@ -18,7 +18,7 @@ class User extends CI_Controller {
         $data['page_title'] = 'Usuários';
         $this->load->model('user_model');
 
-        $config = $this->config_pagination();
+        $config = config_pagination(base_url('user/index'), $this->user_model->countAll());
         $offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $this->load->library('pagination');
         $this->pagination->initialize($config);
@@ -47,7 +47,7 @@ class User extends CI_Controller {
             } else {
                 $this->session->set_flashdata(
                         array('type' => 'alert-danger',
-                            'msg' => 'Usuário não cadastrado'
+                            'msg' => 'Usuário não editado'
                 ));
                 redirect('user');
             }
@@ -99,13 +99,13 @@ class User extends CI_Controller {
                         array('type' => 'alert-success',
                             'msg' => 'Usuário cadastrado com sucesso'
                 ));
-                redirect('app');
+                redirect('user');
             } else {
                 $this->session->set_flashdata(
                         array('type' => 'alert-danger',
                             'msg' => 'Usuário não cadastrado'
                 ));
-                redirect('app');
+                redirect('user');
             }
         }
     }
@@ -119,33 +119,4 @@ class User extends CI_Controller {
             'senha' => $this->input->post('senha')
         );
     }
-
-    private function config_pagination() {
-        return array(
-            'base_url' => base_url('user/index'),
-            'per_page' => 8,
-            'num_links' => 3,
-            'uri_segment' => 3,
-            'total_rows' => $this->user_model->countAll(),
-            'full_tag_open' => "<ul class = 'pagination'>",
-            'full_tag_close' => "</ul>",
-            'first_link' => FALSE,
-            'last_link' => FALSE,
-            'first_tag_open' => "<li>",
-            'first_tag_close' => "</li>",
-            'prev_link' => "Anterior",
-            'prev_tag_open' => "<li class = 'prev'>",
-            'prev_tag_close' => "</li>",
-            'next_link' => "Próximo",
-            'next_tag_open' => "<li class = 'next'>",
-            'next_tag_close' => "</li>",
-            'last_tag_open' => '<li>',
-            'last_tag_close' => '</li>',
-            'cur_tag_open' => "<li class = 'active'><a href = '#'>",
-            'cur_tag_close' => "</a></li>",
-            "num_tag_open" => "<li>",
-            "num_tag_close" => "</li>"
-        );
-    }
-
 }
