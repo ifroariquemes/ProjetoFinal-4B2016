@@ -23,6 +23,23 @@ class Produto_model extends CI_Model {
         return array();
     }
 
+    public function getLike($like) {
+        $this->db->like('nm_produto', $like);
+        $produtos = $this->db->get($this->table);
+        if ($produtos->num_rows() > 0) {
+            return $produtos->result();
+        }
+        return array();
+    }
+    public function getWhere($where) {
+        $this->db->where('categoria_id', $where);
+        $produtos = $this->db->get($this->table);
+        if ($produtos->num_rows() > 0) {
+            return $produtos->result();
+        }
+        return array();
+    }
+
     public function countAll() {
         return $this->db->count_all($this->table);
     }
