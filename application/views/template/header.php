@@ -67,7 +67,7 @@
                             </div>
                         </form>
                     </li>
-                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
+                    <li><a href="<?= base_url('carrinho/view')?>"><span class="glyphicon glyphicon-shopping-cart"></span> Carrinho</a></li>
                     <?php if (!$this->session->has_userdata('logged')) { ?>
                         <li>
                             <a href="<?= base_url('user/login') ?>"><span class="glyphicon glyphicon-log-in"></span> Login</a>

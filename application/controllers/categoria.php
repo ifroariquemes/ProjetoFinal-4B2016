@@ -14,17 +14,18 @@ class Categoria extends CI_Controller {
         $this->load->library('pagination');
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
-        $data['categorias'] = $this->categoria_model->getAll($config['per_page'], $offset);
+        $data['categorias'] = $this->categoria_model->getAll($this->categoria_model->GET_CATEGORIA, $config['per_page'], $offset);
         $this->template->show('categoria/index', $data);
     }
 
     public function add() {
         $data['page_title'] = "Categorias-Cadastro";
+        $this->load->model('categoria_model');
         $action = $this->input->post('add');
         if (!$action) {
-            $this->template->show('categoria/add');
+            $data['categorias'] = $this->categoria_model->getAll($this->categoria_model->GET_CATEGORIA);
+            $this->template->show('categoria/add', $data);
         } else {
-            $this->load->model('categoria_model');
             if ($this->categoria_model->insert(array('nm_categoria' => $this->input->post('nm_categoria')))) {
                 $this->session->set_flashdata(
                         array('type' => 'alert-success',
