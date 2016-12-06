@@ -6,8 +6,8 @@ class App extends CI_Controller {
 	
 	public function index()
 	{
-		//$this->load->view('welcome_message');
-            echo 'Chegueiii';
+		$this->load->view('login_view');
+           
 	}
         public function teste(){
             echo 'teste';
