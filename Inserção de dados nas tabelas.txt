@@ -50,7 +50,7 @@ VALUES
 (2, 'Memória RAM', 'DDR4 4GB 2133MHz Crucial (CT4G4DFS8213)', 139.90),
 (2, 'Memória RAM', 'DDR4 4GB 2400Mhz Kingston', 169.99),
 (6, 'HD', 'WD SATA 3.5 1TB 64MB Cache WD10PURX Purple', 419.90),
-(6, 'HD', 'HITACHI 1TB Cache 64MB', 399.90),
+(6, 'HD', 'HITACHI 1TB Cache 64MB', 399.90)
 ;
 
 --INSERINDO NA TABELA ITENS
