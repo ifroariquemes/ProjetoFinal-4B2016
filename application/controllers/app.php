@@ -9,7 +9,8 @@ class App extends CI_Controller {
 		$this->load->view('login_view');
            
 	}
-        public function teste(){
+        /*public function teste(){
             echo 'teste';
-        }
+        }*/
+        
 }
