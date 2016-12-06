@@ -11,9 +11,9 @@
             <ul id="prova-lista">
                 <?php
                 $prova = $pdo->prepare("SELECT * FROM `provas` WHERE `status` = 1 ORDER BY `id_prova` DESC");
-                $provas->execute();
+                $prova->execute();
 
-                while ($row = $provas->fetchObject()) {
+                while ($row = $prova->fetchObject()) {
                     ?>
                     <li class="open-prova" data-id="<?php echo $row->id; ?>">
                         <a href="prova.php?prova=<?php echo $row->id_prova; ?>">
