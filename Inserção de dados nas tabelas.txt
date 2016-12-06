@@ -1,45 +1,69 @@
 --INSERINDO NA TABELA USUARIO
-INSERT INTO usuario (nm_usuario, email, senha, telefone, sobrenome)
+
+INSERT INTO usuario (nm_usuario, email, senha, telefone, sobrenome) 
 VALUES
-('Lucas', 'lpjs@ifro.edu.br', '123456','98888-8888', 'Pereira'),
-('Éverton','esb@ifro.edu.br','123456','99999-9999','Bergantin'),
-('Daniedson','dms@ifro.edu.br','123456','93333-3333','Santos'),
-('Daniel','dsf@ifro.edu.br','123456','91111-1111','Souza');
+('Lucas', 'lucas@lucas', '50cba43604cf4c7e868f19b9f0d7c89d714181e9','98888-8888', 'Pereira');
+
 
 --INSERINDO NA TABELA CATEGORIA
-INSERT INTO categoria(nm_categoria)
-VALUES
-('Monitores'),
-('Memorias'),
-('Processadores'),
-('Placas de som'),
-('Placas de video'),
-('HD'),
-('Placas mãe');
 
---INSERINDO NA TABELA SUB_CATEGORIA
-INSERT INTO sub_categoria(categoria_id, nm_sub)
+INSERT INTO categoria(pai_id, nm_categoria)
 VALUES
-('1','LCD'),
-('1','LED'),
-('3','AMD'),
-('3','INTEL');
+(0,'Monitores'),
+(0,'Memorias'),
+(0,'Processadores'),
+(0,'Placas de som'),
+(0,'Placas de video'),
+(0,'HD'),
+(0,'Placas mãe'),
+(1,'LCD'),
+(1,'LED'),
+(3,'AMD'),
+(3,'INTEL'),
+(7,'ASUS'),
+(7,'GIGABYTE');
+
 
 --INSERINDO NA TABELA PRODUTO
+
 INSERT INTO produto(categoria_id, nm_produto, descricao, vl_produto)
 VALUES
-('3','Processador','Intel Core i7','1899,90'),
-('2','Memporia RAM','Memória 2GB 1600MHz DDR3','129,90'),
-('6','HD','HD HITACHI 1TB','399'),
-('7','Placa mãe','Placa Mãe 1150 Gigabyte GA-H81M-S2PH com Serial, Paralela e HDMI','419');
+(10, 'Processador AMD', 'FX-4300 Octa Core 3.8GHz (até 4.0GHz) Black Edition AM3+ (FD4300WMHKBOX)', 569.90),
+(10, 'Processador AMD', 'FX-6300 Six Core 3.5GHz (até 4.1GHz) Black Edition AM3+ (FD6300WMHKBOX)', 549.90),
+(10, 'Processador AMD', 'FX-8320E Octa Core 3.2GHz (até 4GHz) Black Edition AM3+ (FD832EWMHKBOX)', 699.90),
+(11, 'Processador INTEL', 'Core I3-6100, Cache 3MB, 3.7Ghz, LGA 1151 BX80662I36100', 719.90),
+(11, 'Processador INTEL', 'Core i5-6400 2.7Ghz, Cache 6MB, LGA 1151, Intel HD Graphics 530', 1169.90),
+(11, 'Processador INTEL', 'Core i7-6700, Cache 8MB, Skylake 6a Geração, Quad-Core 3.4 GHz LGA 1151', 1899.90),
+(11, 'Processador INTEL', 'Pentium G4400, Cache 3MB, 3.3Ghz, LGA 1151 BX80662G4400', 399.90),
+(5, 'Placa de Vídeo', 'GALAX GEFORCE GTX 980 TI HOF 6GB GDDR5 384BIT, 98IRH5DHF7XH', 2000),
+(5, 'Placa de Vídeo', 'ASUS GeForce GTX 980 4GB DDR5 256bits PCIe 3.0 (STRIX-GTX980-DC2OC-4GD5)', 2999),
+(5, 'Placa de Vídeo', 'ASUS ROG Strix GTX 1060 Gaming 6GB GDDR5 192bits ROG STRIX-GTX1060-O6G-GAMING', 2099),
+(5, 'Placa de Vídeo', 'GeForce GTX 980 Ti 6GB GDDR5 384bits EVGA (06G-P4-4995-KR)', 4799),
+(4, 'Placa de Som', '7.1 Canais', 74.90),
+(12, 'Placa Mãe', 'ASUS X99-A, INTEL LGA 2011-V3, CHIPSET INTEL X99', 1500),
+(13, 'Placa Mãe', '1150 Gigabyte GA-H81M-S2PH com Serial, Paralela e HDMI', 419),
+(12, 'Placa Mãe', 'ASUS H170M-E D3 LGA 1151 mATX DDR3 DDR3L, Conector M.2, HDMI', 680),
+(13, 'Placa Mãe', 'Gigabyte GA-AM1M-S2H Soquete AM1 com HDMI (S,V,R)', 200),
+(13, 'Placa Mãe', 'Gigabyte GA-B85M-D3PH LGA 1150 (S,V,R)', 519),
+(2, 'Memória RAM', 'Desktop DDR4 16GB 2133Mhz Kingston KVR21N15D8-16 Non-Ecc Cl15 Dimm', 469.90),
+(2, 'Memória RAM', '2GB 1600MHz DDR3 DIIM para Notebook', 129.90),
+(2, 'Memória RAM', 'DDR4 4GB 2133MHz Crucial (CT4G4DFS8213)', 139.90),
+(2, 'Memória RAM', 'DDR4 4GB 2400Mhz Kingston', 169.99),
+(6, 'HD', 'WD SATA 3.5 1TB 64MB Cache WD10PURX Purple', 419.90),
+(6, 'HD', 'HITACHI 1TB Cache 64MB', 399.90),
+;
+
 --INSERINDO NA TABELA ITENS
+
 INSERT INTO itens(lista_id, produto_id, quantidade)
 VALUES
 ('1','2','3'),
 ('3','1','1'),
 ('2','4','4');
 
+
 --INSERINDO NA TABELA LISTA
+
 INSERT INTO lista (nm_usuario, email)
 VALUES
 ('Lucas','lpjs@ifro.edu.br'),
