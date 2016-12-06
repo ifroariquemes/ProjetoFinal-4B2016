@@ -18,7 +18,7 @@ class Produto extends CI_Controller {
     
     public function view($id) {
         $this->load->model('produto_model');
-        $data['produto'] = $this->produto->getById($id);
+        $data['produto'] = $this->produto_model->getById($id);
         $this->template->show('produto/view', $data);
     }
 
